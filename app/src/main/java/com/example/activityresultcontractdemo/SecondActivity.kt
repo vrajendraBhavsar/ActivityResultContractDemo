@@ -6,6 +6,8 @@ import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.activityresultcontractdemo.Contract.Companion.INTENT_REQ_KEY
+import com.example.activityresultcontractdemo.Contract.Companion.RESULT_KEY
 import com.google.android.material.snackbar.Snackbar
 
 class SecondActivity : AppCompatActivity() {
@@ -19,7 +21,7 @@ class SecondActivity : AppCompatActivity() {
         val tvContentView = findViewById<TextView>(R.id.tvContent)
 
         val dataContent =
-            intent.getStringExtra(MainActivity.INTENT_REQ_KEY)  //Getting data from the intent which we pass from Main Activity
+            intent.getStringExtra(INTENT_REQ_KEY)  //Getting data from the intent which we pass from Main Activity
         if (dataContent?.isNotEmpty() == true) {
             tvContentView.text = dataContent
         } else {
@@ -28,8 +30,9 @@ class SecondActivity : AppCompatActivity() {
         tvContentView.setOnClickListener {
             Log.d("TAG", "!@# tvContentView clicked ")
             val intent = Intent()
-            intent.putExtra(MainActivity.RESULT_KEY, "I'm the data came from Second Activity")
+            intent.putExtra(RESULT_KEY, "Hakuna matata!!!")
             setResult(RESULT_OK, intent)
+//            Contract().parseResult(RESULT_OK, intent)
             finish()
         }
     }
